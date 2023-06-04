@@ -1,0 +1,21 @@
+
+
+ul {
+    display: flex;
+    list-style: none;
+}
+
+li {
+    margin-left: 32px;
+    margin-right: 32px;
+}
+a {
+    font-size: 20px;
+    color: #ff6b20;
+    text-decoration: none;
+}
+.linkActive {
+    color: #212020;
+    border-bottom: 4px solid #212020;
+    font-weight: bold;
+}

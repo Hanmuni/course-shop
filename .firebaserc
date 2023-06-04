@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "students-2a673": {
+      "hosting": {
+        "angular-reg": [
+          "students-2a673"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "students-2a673"
+  }
+}

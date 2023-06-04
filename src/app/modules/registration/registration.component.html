@@ -1,0 +1,91 @@
+<div class="registration">
+  <h1>Student registration</h1>
+  <form *ngIf="studentForm" [formGroup]="studentForm">
+    <div class="form-set">
+      <label>Student Name</label>
+      <input
+        required
+        type="text"
+        class="form-control"
+        placeholder="Enter Name"
+        formControlName="name"
+      />
+    </div>
+
+    <div class="form-set">
+      <label>Course</label>
+      <input
+        required
+        type="text"
+        placeholder="Enter Course"
+        formControlName="course"
+      />
+    </div>
+
+    <div class="form-set">
+      <label>Date</label>
+      <input
+        required
+        type="date"
+        placeholder="Enter Date"
+        formControlName="date"
+      />
+    </div>
+
+    <div class="form-set">
+      <label>Price</label>
+      <input
+        required
+        type="number"
+        placeholder="Enter Price"
+        formControlName="price"
+      />
+    </div>
+  </form>
+  <button type="submit" (click)="submitStudent()">Save</button>
+</div>
+
+<div class="registration">
+  <h1>Student Table</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let studentData of student | async">
+      <tr>
+        <td>{{ studentData.id }}</td>
+        <td>{{ studentData.name }}</td>
+        <td>{{ studentData.course }}</td>
+        <td>{{ studentData.price | currency : "EUR" }}</td>
+        <td>{{ studentData.date | date : "longDate" }}</td>
+        <td>
+          <a
+            ><img
+              (click)="editStudent(studentData.id)"
+              class="german-btn"
+              src="assets/img/edit.png"
+            />
+          </a>
+        </td>
+        <td>
+          <a>
+            <img
+              class="german-btn"
+              (click)="deleteStudent(studentData.id)"
+              src="assets/img/delete.png"
+            />
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
