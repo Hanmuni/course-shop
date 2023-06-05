@@ -27,6 +27,7 @@ export class RegistrationComponent implements OnInit {
   course: string | undefined;
   date: string | undefined;
   price: number | undefined;
+  password: string | undefined;
 
   studentForm: UntypedFormGroup | undefined;
 
@@ -39,23 +40,28 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentForm = this.formBuilder.group({
-      name: [undefined, [Validators.required, Validators.minLength(3)]],
-      course: [undefined, [Validators.required, Validators.minLength(3)]],
-      date: [undefined, [Validators.required, Validators.minLength(3)]],
-      price: [undefined, [Validators.required, Validators.minLength(1)]],
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      course: ['', [Validators.required, Validators.minLength(1)]],
+      date: ['', [Validators.required]],
+      price: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
   submitStudent() {
-    const collectionInstance = collection(this.firestore, 'students');
-    addDoc(collectionInstance, this.studentForm?.value)
-      .then(() => {
-        console.log('Student submitted successfully', this.studentForm?.value);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-    this.studentForm?.reset();
+    if (this.studentForm?.valid) {
+      const collectionInstance = collection(this.firestore, 'students');
+      addDoc(collectionInstance, this.studentForm?.value)
+        .then(() => {
+          console.log(
+            'Student submitted successfully',
+            this.studentForm?.value
+          );
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+      this.studentForm?.reset();
+    }
   }
 
   getStudent() {
@@ -69,10 +75,10 @@ export class RegistrationComponent implements OnInit {
   editStudent(id: string) {
     const docInstance = doc(this.firestore, 'students', id);
     const editData = {
-      name: [undefined, [Validators.required, Validators.minLength(3)]],
-      course: [undefined, [Validators.required, Validators.minLength(3)]],
-      date: [undefined, [Validators.required, Validators.minLength(3)]],
-      price: [undefined, [Validators.required, Validators.minLength(1)]],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      course: ['', [Validators.required, Validators.minLength(3)]],
+      date: ['', [Validators.required, Validators.minLength(3)]],
+      price: ['', [Validators.required, Validators.minLength(1)]],
     };
 
     updateDoc(docInstance, editData)

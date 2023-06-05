@@ -3,43 +3,59 @@
   <form *ngIf="studentForm" [formGroup]="studentForm">
     <div class="form-set">
       <label>Student Name</label>
-      <input
-        required
-        type="text"
-        class="form-control"
-        placeholder="Enter Name"
-        formControlName="name"
-      />
+      <span class="between">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Name"
+          formControlName="name"
+        />
+        <img
+          *ngIf="studentForm.controls['name'].valid"
+          src="assets/img/check.png"
+        />
+      </span>
     </div>
 
     <div class="form-set">
       <label>Course</label>
-      <input
-        required
-        type="text"
-        placeholder="Enter Course"
-        formControlName="course"
-      />
+      <span class="between">
+        <input
+          type="text"
+          placeholder="Enter Course"
+          formControlName="course"
+        />
+        <img
+          *ngIf="studentForm.controls['course'].valid"
+          src="assets/img/check.png"
+        />
+      </span>
     </div>
 
     <div class="form-set">
       <label>Date</label>
-      <input
-        required
-        type="date"
-        placeholder="Enter Date"
-        formControlName="date"
-      />
+      <span class="between">
+        <input type="date" placeholder="Enter Date" formControlName="date" />
+        <img
+          *ngIf="studentForm.controls['date'].valid"
+          src="assets/img/check.png"
+        />
+      </span>
     </div>
 
     <div class="form-set">
       <label>Price</label>
-      <input
-        required
-        type="number"
-        placeholder="Enter Price"
-        formControlName="price"
-      />
+      <span class="between">
+        <input
+          type="number"
+          placeholder="Enter Price"
+          formControlName="price"
+        />
+        <img
+          *ngIf="studentForm.controls['price'].valid"
+          src="assets/img/check.png"
+        />
+      </span>
     </div>
   </form>
   <button type="submit" (click)="submitStudent()">Save</button>

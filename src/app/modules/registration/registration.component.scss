@@ -17,7 +17,10 @@ form {
     margin: 16px;
     color: #2d465d;
 }
-
+.between {
+    display: flex;
+    align-items: center;
+}
 input {
     width: 300px;
     height: 50px;
@@ -114,6 +117,7 @@ table {
     }
 }
 img {
+    margin: 8px;
     &:hover {
         cursor: pointer;
     }
